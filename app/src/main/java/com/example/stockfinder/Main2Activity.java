@@ -1,4 +1,4 @@
-package com.example.stockfinder.mp5;
+package com.example.stockfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,8 +22,13 @@ import com.example.stockfinder.R;
 
 import org.json.JSONObject;
 
-public class InsideInfo extends AppCompatActivity {
-
+public class Main2Activity extends AppCompatActivity {
+    public Quotes quotes;
+    public double price;
+    public double high;
+    public double low;
+    public long volume;
+    public static String stock;
 
     private RequestQueue queue;
 
@@ -38,7 +43,56 @@ public class InsideInfo extends AppCompatActivity {
         // final Button startAmazon = findViewById();
         // final Button startTesla = findViewById();
         // final Button startGE = findViewById();
+
+
+
+        Button btn0 = findViewById(R.id.btn0);
+
+        btn0.setOnClickListener(v -> {
+            stock = "AAPL";
+            putStockInfo("AAPL");
+            stockInfo();
+
+        });
+
+        Button btn1 = findViewById(R.id.btn1);
+
+        btn1.setOnClickListener(v -> {
+            stock = "GOOG";
+            putStockInfo("GOOG");
+            stockInfo();
+
+        });
+
+        Button btn2 = findViewById(R.id.btn2);
+
+        btn2.setOnClickListener(v -> {
+            stock = "AMZN";
+            putStockInfo("AMZN");
+            stockInfo();
+        });
+
+        Button btn3 = findViewById(R.id.btn3);
+
+        btn3.setOnClickListener(v -> {
+            stock = "TSLA";
+            putStockInfo("TSLA");
+            stockInfo();
+        });
+
+        Button btn4 = findViewById(R.id.btn4);
+
+        btn4.setOnClickListener(v -> {
+            stock = "GE";
+            putStockInfo("GE");
+            stockInfo();
+        });
     }
+
+    private void stockInfo() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
     public void putStockInfo(String setSymbol) {
         String apiKey = "cd056e96e9f950cfd64b93565b12b399";
         final BarchartOnDemandClient onDemand = new BarchartOnDemandClient.Builder().
@@ -46,27 +100,20 @@ public class InsideInfo extends AppCompatActivity {
         final QuoteRequest.Builder builder = new QuoteRequest.Builder();
         builder.symbols(new String[] {"AAPL", "GOOG", "AMZN", "TSLA", "GE"});
         builder.mode(QuoteRequest.QuoteRequestMode.REAL_TIME);
-        String[] stockList = {"AAPL", "GOOG", "AMZN", "TSLA", "GE"};
+        final String[] stockList = {"AAPL", "GOOG", "AMZN", "TSLA", "GE"};
+
         try {
-            final Quotes quotes = onDemand.fetch(builder.build());
+            quotes = onDemand.fetch(builder.build());
             // TextView currentAsk = findViewById();
             // repeat for high, low, and volume;
-            double price = quotes.bySymbol(setSymbol).getLastPrice();
-            double high = quotes.bySymbol(setSymbol).getHigh();
-            double low = quotes.bySymbol(setSymbol).getLow();
-            long volume = quotes.bySymbol(setSymbol).getVolume();
+            price = quotes.bySymbol(setSymbol).getLastPrice();
+            high = quotes.bySymbol(setSymbol).getHigh();
+            low = quotes.bySymbol(setSymbol).getLow();
+            volume = quotes.bySymbol(setSymbol).getVolume();
             // currentAsk.setText("Current Price : " + price);
             // repeat for all texts
         } catch (Exception e) {
             Log.d("MP5", "error");
         }
-    }
-    public void buttonClick(Button a, final String setSymbol) {
-        a.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                putStockInfo(setSymbol);
-            }
-        });
     }
 }

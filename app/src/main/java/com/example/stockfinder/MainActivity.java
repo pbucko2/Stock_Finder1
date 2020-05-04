@@ -1,7 +1,9 @@
 package com.example.stockfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
-
+import com.example.stockfinder.Main2Activity;
+import com.example.stockfinder.mp5.InsideInfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -14,12 +16,20 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    final String[] stockList = new String[]{"AAPL", "GOOG", "AMZN", "TSLA", "GE"};
+    private String name;
+    private double high;
+    private double low;
+    private double price;
+    private double volume;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Intent intent = getIntent();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -51,5 +61,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setUpUi() {
+        Main2Activity stockTime = new Main2Activity();
+        name = stockTime.stock;
+        stockTime.putStockInfo(name);
+        high = stockTime.high;
+        low = stockTime.low;
+        price = stockTime.price;
+        volume = stockTime.volume;
+
     }
 }

@@ -19,6 +19,7 @@
         android:layout_width="196dp"
         android:layout_height="141dp"
         android:text="Start"
+        app:layout_anchor="@+id/starterButton"
         app:layout_anchorGravity="center"
         tools:visibility="visible" />
 
