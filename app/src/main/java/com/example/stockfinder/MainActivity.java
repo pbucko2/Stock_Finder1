@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Main2Activity stockTime = new Main2Activity();
         name = stockTime.stock;
         stockTime.putStockInfo(name);
+        System.out.println(name);
 
         high = stockTime.high;
         String stringHigh = String.valueOf(high);
