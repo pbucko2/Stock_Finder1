@@ -28,17 +28,16 @@ public class InsideInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // contentview and button Ids need to be filled out once buttons and layout are made
-        // setContentView(R.layout."") "" = inner info
-        final Button startApple = findViewById();
+        setContentView(R.layout.activity_main2);
+        final Button startApple = findViewById(R.id.btn0);
         buttonClick(startApple, "AAPL");
-        final Button startGoogle = findViewById();
+        final Button startGoogle = findViewById(R.id.btn1);
         buttonClick(startGoogle, "GOOG");
-        final Button startAmazon = findViewById();
+        final Button startAmazon = findViewById(R.id.btn2);
         buttonClick(startAmazon, "AMZN");
-        final Button startTesla = findViewById();
+        final Button startTesla = findViewById(R.id.btn3);
         buttonClick(startTesla, "TSLA");
-        final Button startGE = findViewById();
+        final Button startGE = findViewById(R.id.btn4);
         buttonClick(startGE, "GE");
     }
     public void putStockInfo(String setSymbol) {
@@ -51,10 +50,10 @@ public class InsideInfo extends AppCompatActivity {
         try {
             final Quotes quotes = onDemand.fetch(builder.build());
             // The Id corresponds to the text on the UI
-            TextView currentPrice = findViewById();
-            TextView currentHigh = findViewById();
-            TextView currentLow = findViewById();
-            TextView currentVol = findViewById();
+            TextView currentPrice = findViewById(R.id.stockprice);
+            TextView currentHigh = findViewById(R.id.stockhigh);
+            TextView currentLow = findViewById(R.id.stocklow);
+            TextView currentVol = findViewById(R.id.stockvol);
             // this is where the symbol is used
             double price = quotes.bySymbol(setSymbol).getLastPrice();
             double high = quotes.bySymbol(setSymbol).getHigh();
