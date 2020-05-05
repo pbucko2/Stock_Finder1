@@ -19,15 +19,16 @@ import com.barchart.ondemand.api.QuoteRequest;
 import com.barchart.ondemand.api.responses.Quote;
 import com.barchart.ondemand.api.responses.Quotes;
 import com.example.stockfinder.R;
+import com.example.stockfinder.mp5.InsideInfo;
 
 import org.json.JSONObject;
 
 public class Main2Activity extends AppCompatActivity {
-    public Quotes quotes;
-    public double price;
-    public double high;
-    public double low;
-    public long volume;
+    public static Quotes quotes;
+    public static double price;
+    public static double high;
+    public static double low;
+    public static long volume;
     public static String stock;
 
     private RequestQueue queue;
@@ -44,12 +45,11 @@ public class Main2Activity extends AppCompatActivity {
         // final Button startTesla = findViewById();
         // final Button startGE = findViewById();
 
-
-
         Button apl = findViewById(R.id.btn0);
 
         apl.setOnClickListener(v -> {
             stock = "AAPL";
+            System.out.println(stock);
             stockInfo();
 
         });
@@ -58,6 +58,7 @@ public class Main2Activity extends AppCompatActivity {
 
         goog.setOnClickListener(v -> {
             stock = "GOOG";
+            System.out.println(stock);
             stockInfo();
 
         });
@@ -66,7 +67,7 @@ public class Main2Activity extends AppCompatActivity {
 
         amzn.setOnClickListener(v -> {
             stock = "AMZN";
-
+            System.out.println(stock);
             stockInfo();
         });
 
@@ -74,7 +75,7 @@ public class Main2Activity extends AppCompatActivity {
 
         tsla.setOnClickListener(v -> {
             stock = "TSLA";
-
+            System.out.println(stock);
             stockInfo();
         });
 
@@ -82,36 +83,16 @@ public class Main2Activity extends AppCompatActivity {
 
         ge.setOnClickListener(v -> {
             stock = "GE";
-
+            System.out.println(stock);
             stockInfo();
         });
     }
 
     private void stockInfo() {
-        startActivity(new Intent(this, MainActivity.class));
+        Intent startMain = new Intent(this,MainActivity.class);
+        startMain.putExtra("name", stock);
+        startActivity(startMain);
     }
 
-    public void putStockInfo(String setSymbol) {
-        String apiKey = "cd056e96e9f950cfd64b93565b12b399";
-        final BarchartOnDemandClient onDemand = new BarchartOnDemandClient.Builder().
-                apiKey(apiKey).build();
-        final QuoteRequest.Builder builder = new QuoteRequest.Builder();
-        builder.symbols(new String[] {"AAPL", "GOOG", "AMZN", "TSLA", "GE"});
-        builder.mode(QuoteRequest.QuoteRequestMode.REAL_TIME);
-        final String[] stockList = {"AAPL", "GOOG", "AMZN", "TSLA", "GE"};
 
-        try {
-            quotes = onDemand.fetch(builder.build());
-            // TextView currentAsk = findViewById();
-            // repeat for high, low, and volume;
-            price = quotes.bySymbol(setSymbol).getLastPrice();
-            high = quotes.bySymbol(setSymbol).getHigh();
-            low = quotes.bySymbol(setSymbol).getLow();
-            volume = quotes.bySymbol(setSymbol).getVolume();
-            // currentAsk.setText("Current Price : " + price);
-            // repeat for all texts
-        } catch (Exception e) {
-            Log.d("MP5", "error");
-        }
-    }
 }

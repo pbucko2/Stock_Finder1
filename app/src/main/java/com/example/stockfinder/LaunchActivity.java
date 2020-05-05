@@ -21,6 +21,7 @@ public class LaunchActivity extends AppCompatActivity {
         Button start = findViewById(R.id.start);
 
         start.setOnClickListener(v -> {
+            System.out.print("hello");
             start();
         });
 

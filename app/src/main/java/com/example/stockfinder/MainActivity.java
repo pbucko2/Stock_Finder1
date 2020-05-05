@@ -3,6 +3,7 @@ package com.example.stockfinder;
 import android.content.Intent;
 import android.os.Bundle;
 import com.example.stockfinder.Main2Activity;
+
 import com.example.stockfinder.mp5.InsideInfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -18,50 +19,30 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String[] stockList = new String[]{"AAPL", "GOOG", "AMZN", "TSLA", "GE"};
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setUpUi();
+    }
+
+
     private String name;
     private double high;
     private double low;
     private double price;
     private long volume;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Intent intent = getIntent();
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     private void setUpUi() {
-        Main2Activity stockTime = new Main2Activity();
-        name = stockTime.stock;
+
+        Intent startMain = getIntent();
+        name = startMain.getStringExtra("name");
+        InsideInfo stockTime = new InsideInfo();
         stockTime.putStockInfo(name);
-        System.out.println(name);
+        System.out.println("reached");
 
         high = stockTime.high;
         String stringHigh = String.valueOf(high);
@@ -74,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         volume = stockTime.volume;
         String stringVol = String.valueOf(volume);
-
 
         TextView stockName = findViewById(R.id.stockname);
         stockName.setText(name);
@@ -92,4 +72,5 @@ public class MainActivity extends AppCompatActivity {
         stockVol.setText("VOLUME:/t" + stringVol);
 
     }
+
 }

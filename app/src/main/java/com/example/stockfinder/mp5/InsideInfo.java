@@ -24,22 +24,19 @@ import org.json.JSONObject;
 
 public class InsideInfo extends AppCompatActivity {
 
+    public Quotes quotes;
+    public double price;
+    public double high;
+    public double low;
+    public long volume;
+    public String stock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // contentview and button Ids need to be filled out once buttons and layout are made
         // setContentView(R.layout."") "" = inner info
-        final Button startApple = findViewById();
-        buttonClick(startApple, "AAPL");
-        final Button startGoogle = findViewById();
-        buttonClick(startGoogle, "GOOG");
-        final Button startAmazon = findViewById();
-        buttonClick(startAmazon, "AMZN");
-        final Button startTesla = findViewById();
-        buttonClick(startTesla, "TSLA");
-        final Button startGE = findViewById();
-        buttonClick(startGE, "GE");
+
     }
     public void putStockInfo(String setSymbol) {
         String apiKey = "cd056e96e9f950cfd64b93565b12b399";
@@ -48,32 +45,19 @@ public class InsideInfo extends AppCompatActivity {
         final QuoteRequest.Builder builder = new QuoteRequest.Builder();
         builder.symbols(new String[] {"AAPL", "GOOG", "AMZN", "TSLA", "GE"});
         builder.mode(QuoteRequest.QuoteRequestMode.REAL_TIME);
+
         try {
-            final Quotes quotes = onDemand.fetch(builder.build());
-            // The Id corresponds to the text on the UI
-            TextView currentPrice = findViewById();
-            TextView currentHigh = findViewById();
-            TextView currentLow = findViewById();
-            TextView currentVol = findViewById();
-            // this is where the symbol is used
-            double price = quotes.bySymbol(setSymbol).getLastPrice();
-            double high = quotes.bySymbol(setSymbol).getHigh();
-            double low = quotes.bySymbol(setSymbol).getLow();
-            long volume = quotes.bySymbol(setSymbol).getVolume();
-            currentPrice.setText("Current Price: " + price);
-            currentHigh.setText("Current High: " + high);
-            currentLow.setText("Current Low: " + low);
-            currentVol.setText("Volume: " + volume);
+            quotes = onDemand.fetch(builder.build());
+            // TextView currentAsk = findViewById();
+            // repeat for high, low, and volume;
+            price = quotes.bySymbol(setSymbol).getLastPrice();
+            high = quotes.bySymbol(setSymbol).getHigh();
+            low = quotes.bySymbol(setSymbol).getLow();
+            volume = quotes.bySymbol(setSymbol).getVolume();
+            // currentAsk.setText("Current Price : " + price);
+            // repeat for all texts
         } catch (Exception e) {
             Log.d("MP5", "error");
         }
-    }
-    public void buttonClick(Button a, final String setSymbol) {
-        a.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                putStockInfo(setSymbol);
-            }
-        });
     }
 }
