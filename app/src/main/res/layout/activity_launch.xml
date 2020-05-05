@@ -47,15 +47,5 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="141dp"
-            android:layout_height="273dp"
-            android:orientation="horizontal" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

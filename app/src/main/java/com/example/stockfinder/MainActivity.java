@@ -10,9 +10,11 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.service.autofill.TextValueSanitizer;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private double high;
     private double low;
     private double price;
-    private double volume;
+    private long volume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -67,10 +61,34 @@ public class MainActivity extends AppCompatActivity {
         Main2Activity stockTime = new Main2Activity();
         name = stockTime.stock;
         stockTime.putStockInfo(name);
+
         high = stockTime.high;
+        String stringHigh = String.valueOf(high);
+
         low = stockTime.low;
+        String stringLow = String.valueOf(low);
+
         price = stockTime.price;
+        String stringPrice = String.valueOf(price);
+
         volume = stockTime.volume;
+        String stringVol = String.valueOf(volume);
+
+
+        TextView stockName = findViewById(R.id.stockname);
+        stockName.setText(name);
+
+        TextView stockHigh = findViewById(R.id.stockhigh);
+        stockHigh.setText("HIGH:/t" + stringHigh);
+
+        TextView stockLow = findViewById(R.id.stocklow);
+        stockLow.setText("LOW:/t" + stringLow);
+
+        TextView stockPrice = findViewById(R.id.stockprice);
+        stockPrice.setText("PRICE:/t" + stringPrice);
+
+        TextView stockVol = findViewById(R.id.stockvol);
+        stockVol.setText("VOLUME:/t" + stringVol);
 
     }
 }

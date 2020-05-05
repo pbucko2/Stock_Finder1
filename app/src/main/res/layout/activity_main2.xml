@@ -22,7 +22,8 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AAPL" />
+                android:text="AAPL"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <Button
                 android:id="@+id/btn0"
@@ -39,7 +40,8 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GOOG" />
+                android:text="GOOG"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <Button
                 android:id="@+id/btn1"
@@ -56,7 +58,8 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AMZN" />
+                android:text="AMZN"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <Button
                 android:id="@+id/btn2"
@@ -73,7 +76,8 @@
                 android:id="@+id/textView3"
                 android:layout_width="91dp"
                 android:layout_height="wrap_content"
-                android:text="TSLA" />
+                android:text="TSLA"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <Button
                 android:id="@+id/btn3"
@@ -90,7 +94,8 @@
                 android:id="@+id/label"
                 android:layout_width="324dp"
                 android:layout_height="wrap_content"
-                android:text="GE" />
+                android:text="GE"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <Button
                 android:id="@+id/btn4"

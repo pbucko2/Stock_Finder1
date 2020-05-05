@@ -36,7 +36,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         queue = Volley.newRequestQueue(this);
-        // setContentView(R.layout."") "" = inner info
+        setContentView(R.layout.activity_main2);
         // final Button startApple = findViewById();
         // buttonClick(startApple, "AAPL");
         // final Button startGoogle = findViewById();
@@ -46,45 +46,43 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-        Button btn0 = findViewById(R.id.btn0);
+        Button apl = findViewById(R.id.btn0);
 
-        btn0.setOnClickListener(v -> {
+        apl.setOnClickListener(v -> {
             stock = "AAPL";
-            putStockInfo("AAPL");
             stockInfo();
 
         });
 
-        Button btn1 = findViewById(R.id.btn1);
+        Button goog = findViewById(R.id.btn1);
 
-        btn1.setOnClickListener(v -> {
+        goog.setOnClickListener(v -> {
             stock = "GOOG";
-            putStockInfo("GOOG");
             stockInfo();
 
         });
 
-        Button btn2 = findViewById(R.id.btn2);
+        Button amzn = findViewById(R.id.btn2);
 
-        btn2.setOnClickListener(v -> {
+        amzn.setOnClickListener(v -> {
             stock = "AMZN";
-            putStockInfo("AMZN");
+
             stockInfo();
         });
 
-        Button btn3 = findViewById(R.id.btn3);
+        Button tsla = findViewById(R.id.btn3);
 
-        btn3.setOnClickListener(v -> {
+        tsla.setOnClickListener(v -> {
             stock = "TSLA";
-            putStockInfo("TSLA");
+
             stockInfo();
         });
 
-        Button btn4 = findViewById(R.id.btn4);
+        Button ge = findViewById(R.id.btn4);
 
-        btn4.setOnClickListener(v -> {
+        ge.setOnClickListener(v -> {
             stock = "GE";
-            putStockInfo("GE");
+
             stockInfo();
         });
     }
